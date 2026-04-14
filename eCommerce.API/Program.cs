@@ -10,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddInfrastructure();
 builder.Services.AddCore();
 
+// Add controllers to the service collection
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 //Use exception handling middleware
