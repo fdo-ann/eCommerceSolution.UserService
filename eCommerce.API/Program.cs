@@ -4,6 +4,8 @@ using eCommerce.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 //Add Infrastructure services
 builder.Services.AddInfrastructure();
 builder.Services.AddCore();
@@ -17,7 +19,7 @@ app.UseExceptionHandlingMiddleware();
 app.UseRouting();
 
 //Auth
-app.UseAuthentication();
+//app.UseAuthentication();
 app.UseAuthorization();
 
 //app.MapGet("/", () => "Hello World!");
