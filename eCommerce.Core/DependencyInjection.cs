@@ -11,7 +11,7 @@ namespace eCommerce.Core
     {
         public static IServiceCollection AddCore( this IServiceCollection services)
         {
-            services.AddTransient<IUsersService, UsersService>();
+            services.AddScoped<IUsersService, UsersService>();
             return services;
         }
     }
