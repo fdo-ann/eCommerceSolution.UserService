@@ -45,14 +45,21 @@ namespace eCommerce.Infrastructure.Repositories
 
         public async Task<ApplicationUser?> GetUserByEmailAndPassword(string? email, string? password)
         {
-            return new ApplicationUser()
-            {
-                UserID = Guid.NewGuid(),
-                Email = email,
-                Password = password,
-                PersonName = "Person name",
-                Gender = GenderOptions.Male.ToString()
-            };
+            //Before dapper just returning the user
+            //return new ApplicationUser()
+            //{
+            //    UserID = Guid.NewGuid(),
+            //    Email = email,
+            //    Password = password,
+            //    PersonName = "Person name",
+            //    Gender = GenderOptions.Male.ToString()
+            //};
+
+            //After Dapper
+            string query = "SELECT * FROM public.\"Users\" WHERE \"Email\"=@Email AND \"Password\"=@Password";
+            var parameters = new { Email = email, Password = password };
+            ApplicationUser? user = await _dbContext.DbConnection.QueryFirstOrDefaultAsync<ApplicationUser>(query, parameters);
+            return user;
         }
 
     }
